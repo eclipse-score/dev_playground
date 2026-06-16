@@ -1,0 +1,12 @@
+module(
+    name = "module_a",
+    version = "0.0.1",
+)
+
+include("//bazel_score:score_gcc_toolchains.MODULE.bazel")
+
+include("//bazel_score:score_rust_toolchains.MODULE.bazel")
+
+include("//bazel_score:score_qnx_toolchains.MODULE.bazel")
+
+include("//bazel_score:score_python.MODULE.bazel")
