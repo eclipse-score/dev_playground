@@ -21,8 +21,14 @@ test --test_output=errors
 common --registry=https://raw.githubusercontent.com/eclipse-score/bazel_registry/main/
 common --registry=https://bcr.bazel.build
 
+# Warning exceptions for targets using the existing _score_common configuration.
+build:_score_common --cxxopt=-Wno-error=mismatched-new-delete
+
 # Import toolchain bazelrc file
 try-import %workspace%/score.bazelrc/score_toolchain.bazelrc
+
+# The sample registers sanitizer features only on the Linux x86_64 GCC toolchain.
+# bazel run --config=score-linux-x86_64 --config=asan_ubsan_lsan //src:hello_a
 
 # Import custom user settings
 # Can be used to enable e.g. sanitizers or other features without modifying the main .bazelrc
